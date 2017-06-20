@@ -7,7 +7,7 @@
 %% General options to match the BES requirements
 \ExecuteBibliographyOptions
   {
-    doi          = false , 
+    doi          = false ,
     eprint       = false ,
     giveninits   = true  ,
     isbn         = false ,
@@ -21,7 +21,7 @@
 \DefineBibliographyStrings{english}{%
   urlseen = {accessed},
 }
-  
+
 %% Only the year is important
 \AtEveryBibitem{%
   \clearfield{day}%
@@ -51,7 +51,12 @@
 
 \DeclareNameFormat{default}{%
   \renewcommand*{\multinamedelim}{\addsemicolon\addspace}%
-  \usebibmacro{name:family-given}{#1}{#4}{#5}{#7}%
+  \nameparts{#1}%
+   \usebibmacro{name:family-given}
+    {\namepartfamily}
+    {\namepartgiveni}
+    {\namepartprefix}
+    {\namepartsuffix}%
   \usebibmacro{name:andothers}%
 }
 
@@ -152,7 +157,7 @@
   \printtext[parens]{%
    eds%
    \addspace%
-   \printnames[given-family]{editor}%  
+   \printnames[given-family]{editor}%
    \clearname{editor}%
   }%
   \newunit\newblock

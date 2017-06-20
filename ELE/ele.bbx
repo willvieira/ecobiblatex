@@ -7,9 +7,9 @@
 %% General options to match the ELE requirements
 \ExecuteBibliographyOptions
   {
-    doi          = false , 
+    doi          = false ,
     eprint       = false ,
-    firstinits   = true  ,
+    giveninits   = true  ,
     isbn         = false ,
     maxcitenames = 2     ,
     mincitenames = 1     ,
@@ -41,12 +41,17 @@
 \DeclareNameAlias{sortname}{last-first}
 
 %% The initials are separated by a thin space, as per Bringhurst
-\renewcommand*{\mkbibnamefirst}[1]{{\let~\,#1}}
+\renewcommand*{\mkbibnamegiven}[1]{{\let~\,#1}}
 
 
 \DeclareNameFormat{default}{%
   \renewcommand*{\multinamedelim}{\addsemicolon\addspace}%
-  \usebibmacro{name:last-first}{#1}{#4}{#5}{#7}%
+  \nameparts{#1}%
+   \usebibmacro{name:family-given}
+    {\namepartfamily}
+    {\namepartgiveni}
+    {\namepartprefix}
+    {\namepartsuffix}%
   \usebibmacro{name:andothers}%
 }
 
